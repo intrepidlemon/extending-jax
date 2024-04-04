@@ -1,11 +1,11 @@
 [project]
-name = "kepler_jax"
-description = "A simple demonstration of how you can extend JAX with custom C++ and CUDA ops"
+name = "glcm_jax"
+description = "CUDA accelerated GLCM"
 readme = "README.md"
-authors = [{ name = "Dan Foreman-Mackey", email = "foreman.mackey@gmail.com" }]
+authors = [{ name = "ianto xi", email = "iantolinxi@gmail.com" }]
 requires-python = ">=3.9"
 license = { file = "LICENSE" }
-urls = { Homepage = "https://github.com/dfm/extending-jax" }
+urls = { Homepage = "https://github.com/intrepidlemon/extending-jax" }
 dependencies = ["jax>=0.4.16", "jaxlib>=0.4.16"]
 dynamic = ["version"]
 
@@ -18,10 +18,10 @@ build-backend = "scikit_build_core.build"
 
 [tool.scikit-build]
 metadata.version.provider = "scikit_build_core.metadata.setuptools_scm"
-sdist.include = ["src/kepler_jax/kepler_jax_version.py"]
-wheel.install-dir = "kepler_jax"
+sdist.include = ["src/glcm_jax/glcm_jax_version.py"]
+wheel.install-dir = "glcm_jax"
 minimum-version = "0.5"
 build-dir = "build/{wheel_tag}"
 
 [tool.setuptools_scm]
-write_to = "src/kepler_jax/kepler_jax_version.py"
+write_to = "src/glcm_jax/glcm_jax_version.py"
