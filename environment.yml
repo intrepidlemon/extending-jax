@@ -1,0 +1,22 @@
+name: jax-cuda-glcm
+channels:
+  - conda-forge
+  - defaults
+  - nvidia
+dependencies:
+  - python=3.10
+  - pip
+  - psycopg2
+  - protobuf
+  - pip:
+      - jax[cuda12_pip]
+      - "-f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html"
+      - pillow
+      - pandas
+      - scipy
+      - tqdm
+      - jupyterlab
+      - einops
+      - optax
+      - lovely-jax
+      - matplotlib
