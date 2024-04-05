@@ -20,3 +20,4 @@ dependencies:
       - optax
       - lovely-jax
       - matplotlib
+      - numpyro
