@@ -2,11 +2,11 @@
 // and I make no promises about the quality of the code or the choices made therein, but
 // it should get the point accross.
 
-#include "kepler.h"
+#include "addition.h"
 #include "kernel_helpers.h"
 #include "kernels.h"
 
-namespace kepler_jax {
+namespace glcm_jax {
 
 namespace {
 
@@ -56,4 +56,4 @@ void gpu_kepler_f64(cudaStream_t stream, void **buffers, const char *opaque,
   apply_kepler<double>(stream, buffers, opaque, opaque_len);
 }
 
-}  // namespace kepler_jax
+}  // namespace glcm_jax

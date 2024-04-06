@@ -6,7 +6,7 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace kepler_jax {
+namespace glcm_jax {
 struct KeplerDescriptor {
   std::int64_t size;
 };
@@ -16,6 +16,6 @@ void gpu_kepler_f32(cudaStream_t stream, void** buffers, const char* opaque,
 void gpu_kepler_f64(cudaStream_t stream, void** buffers, const char* opaque,
                     std::size_t opaque_len);
 
-}  // namespace kepler_jax
+}  // namespace glcm_jax
 
 #endif
