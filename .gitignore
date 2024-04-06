@@ -1,3 +1,4 @@
+compile_commands.json
 src/**/*_version.py
 *.ipynb
 
