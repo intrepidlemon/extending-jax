@@ -22,6 +22,7 @@ sdist.include = ["src/kepler_jax/kepler_jax_version.py"]
 wheel.install-dir = "kepler_jax"
 minimum-version = "0.5"
 build-dir = "build/{wheel_tag}"
+cmake.args = ["-DCMAKE_EXPORT_COMPILE_COMMANDS=1"]
 
 [tool.setuptools_scm]
 write_to = "src/kepler_jax/kepler_jax_version.py"
