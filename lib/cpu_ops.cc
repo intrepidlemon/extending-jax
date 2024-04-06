@@ -18,10 +18,10 @@ void cpu_addition(void *out_tuple, const void **in) {
 
   // The output is stored as a list of pointers since we have multiple outputs
   void **out = reinterpret_cast<void **>(out_tuple);
-  T *out = reinterpret_cast<T *>(out[0]);
+  T *out0 = reinterpret_cast<T *>(out[0]);
 
   for (std::int64_t n = 0; n < size; ++n) {
-    addition(x0[n], x1[n], out + n);
+    addition(x0[n], x1[n], out0 + n);
   }
 }
 
