@@ -12,7 +12,8 @@ namespace {
 template <typename T>
 void cpu_addition(void *out_tuple, const void **in) {
   // Parse the inputs
-  const std::int64_t size = *reinterpret_cast<const std::int64_t *>(in[0]);
+
+  const std::int32_t size = *reinterpret_cast<const std::int32_t *>(in[0]);
   const T *x0 = reinterpret_cast<const T *>(in[1]);
   const T *x1 = reinterpret_cast<const T *>(in[2]);
 
@@ -20,10 +21,11 @@ void cpu_addition(void *out_tuple, const void **in) {
   void **out = reinterpret_cast<void **>(out_tuple);
   T *out0 = reinterpret_cast<T *>(out[0]);
 
-  for (std::int64_t n = 0; n < size; ++n) {
+  for (std::int32_t n = 0; n < size; ++n) {
     addition(x0[n], x1[n], out0 + n);
   }
 }
+
 
 pybind11::dict Registrations() {
   pybind11::dict dict;

@@ -7,8 +7,8 @@
 #include <cstdint>
 
 namespace glcm_jax {
-struct KeplerDescriptor {
-  std::int64_t size;
+struct GLCMDescriptor {
+  std::int32_t size;
 };
 
 void gpu_glcm_f32(cudaStream_t stream, void** buffers, const char* opaque,

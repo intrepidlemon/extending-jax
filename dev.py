@@ -1,11 +1,14 @@
 import lovely_jax as lj
 import jax
-from kepler_jax import kepler
+from glcm_jax import glcm
+from jax import config
+config.update("jax_enable_x64", True)
 
 lj.monkey_patch()
-mean_anom = jax.random.uniform(jax.random.PRNGKey(0), (256,100), dtype="float32")
+x0 = jax.random.uniform(jax.random.PRNGKey(0), (256,100), dtype="float32")
+x1 = jax.random.uniform(jax.random.PRNGKey(0), (256,100), dtype="float32")
 ecc = 0.1
 
-sinE, cosE = kepler(mean_anom, ecc)
-print(sinE, cosE)
-print(jax.make_jaxpr(kepler)(mean_anom, ecc))
+out, = glcm(x0, x1)
+print(out,)
+print(jax.make_jaxpr(glcm)(x0, x1))
