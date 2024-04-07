@@ -11,9 +11,9 @@ struct KeplerDescriptor {
   std::int64_t size;
 };
 
-void gpu_kepler_f32(cudaStream_t stream, void** buffers, const char* opaque,
+void gpu_glcm_f32(cudaStream_t stream, void** buffers, const char* opaque,
                     std::size_t opaque_len);
-void gpu_kepler_f64(cudaStream_t stream, void** buffers, const char* opaque,
+void gpu_glcm_f64(cudaStream_t stream, void** buffers, const char* opaque,
                     std::size_t opaque_len);
 
 }  // namespace glcm_jax
