@@ -47,7 +47,7 @@ def _glcm_abstract(x0, x1):
     dtype = dtypes.canonicalize_dtype(x0.dtype)
     assert dtypes.canonicalize_dtype(x1.dtype) == dtype
     assert x1.shape == shape
-    return (ShapedArray(shape, dtype), ShapedArray(shape, dtype))
+    return (ShapedArray(shape, dtype), )
 
 
 # We also need a lowering rule to provide an MLIR "lowering" of out primitive.
@@ -74,9 +74,9 @@ def _glcm_lowering(ctx, x0, x1, *, platform="cpu"):
 
     # We dispatch a different call depending on the dtype
     if np_dtype == np.float32:
-        op_name = platform + "_addition_f32"
+        op_name = platform + "_glcm_f32"
     elif np_dtype == np.float64:
-        op_name = platform + "_addition_f64"
+        op_name = platform + "_glcm_f64"
     else:
         raise NotImplementedError(f"Unsupported dtype {np_dtype}")
 
@@ -84,7 +84,7 @@ def _glcm_lowering(ctx, x0, x1, *, platform="cpu"):
     if platform == "cpu":
         # On the CPU, we pass the size of the data as a the first input
         # argument
-        return custom_call(
+        results = custom_call(
             op_name,
             # Output types
             result_types=[dtype, ],
@@ -94,6 +94,7 @@ def _glcm_lowering(ctx, x0, x1, *, platform="cpu"):
             operand_layouts=[(), layout, layout],
             result_layouts=[layout, ]
         ).results
+        return results
 
     elif platform == "gpu":
         if gpu_ops is None:
@@ -104,7 +105,7 @@ def _glcm_lowering(ctx, x0, x1, *, platform="cpu"):
         # dimension using the 'opaque' parameter
         opaque = gpu_ops.build_glcm_descriptor(size)
 
-        return custom_call(
+        results = custom_call(
             op_name,
             # Output types
             result_types=[dtype, ],
@@ -116,6 +117,8 @@ def _glcm_lowering(ctx, x0, x1, *, platform="cpu"):
             # GPU specific additional data
             backend_config=opaque
         ).results
+
+        return results
 
     raise ValueError(
         "Unsupported platform; this must be either 'cpu' or 'gpu'"

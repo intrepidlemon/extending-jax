@@ -29,8 +29,8 @@ void cpu_addition(void *out_tuple, const void **in) {
 
 pybind11::dict Registrations() {
   pybind11::dict dict;
-  dict["cpu_addition_f32"] = EncapsulateFunction(cpu_addition<float>);
-  dict["cpu_addition_f64"] = EncapsulateFunction(cpu_addition<double>);
+  dict["cpu_glcm_f32"] = EncapsulateFunction(cpu_addition<float>);
+  dict["cpu_glcm_f64"] = EncapsulateFunction(cpu_addition<double>);
   return dict;
 }
 

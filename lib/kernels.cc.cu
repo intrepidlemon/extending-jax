@@ -25,8 +25,12 @@ void ThrowIfError(cudaError_t error) {
 }
 
 template <typename T>
-inline void apply_glcm(cudaStream_t stream, void **buffers, const char *opaque,
-                         std::size_t opaque_len) {
+inline void apply_glcm(
+  cudaStream_t stream,
+  void **buffers,
+  const char *opaque,
+  std::size_t opaque_len
+) {
   const GLCMDescriptor &d = *UnpackDescriptor<GLCMDescriptor>(opaque, opaque_len);
   const std::int64_t size = d.size;
 
