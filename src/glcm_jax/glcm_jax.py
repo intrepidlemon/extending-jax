@@ -70,7 +70,7 @@ def _glcm_lowering(ctx, x0, x1, *, platform="cpu"):
     layout = tuple(range(len(dims) - 1, -1, -1))
 
     # The total size of the input is the product across dimensions
-    size = np.prod(dims).astype(np.int64)
+    size = np.prod(dims).astype(np.int32)
 
     # We dispatch a different call depending on the dtype
     if np_dtype == np.float32:
@@ -133,6 +133,7 @@ def _glcm_lowering(ctx, x0, x1, *, platform="cpu"):
 # of the GLCM:
 #
 # TODO: this might need to be a different CUDA kernel...
+
 # In this case we don't need to define a transpose rule in order to support
 # reverse and higher order differentiation. This might not be true in other
 # applications, so check out the "How JAX primitives work" tutorial in the JAX

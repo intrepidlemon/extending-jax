@@ -11,8 +11,8 @@ namespace glcm_jax {
 namespace {
 
 template <typename T>
-__global__ void glcm_kernel(std::int64_t size, const T *x0, const T *x1, T *out) {
-  for (std::int64_t idx = blockIdx.x * blockDim.x + threadIdx.x; idx < size;
+__global__ void glcm_kernel(std::int32_t size, const T *x0, const T *x1, T *out) {
+  for (std::int32_t idx = blockIdx.x * blockDim.x + threadIdx.x; idx < size;
        idx += blockDim.x * gridDim.x) {
     addition<T>(x0[idx], x1[idx], out + idx);
   }
@@ -32,7 +32,7 @@ inline void apply_glcm(
   std::size_t opaque_len
 ) {
   const GLCMDescriptor &d = *UnpackDescriptor<GLCMDescriptor>(opaque, opaque_len);
-  const std::int64_t size = d.size;
+  const std::int32_t size = d.size;
 
   const T *x0 = reinterpret_cast<const T *>(buffers[0]);
   const T *x1 = reinterpret_cast<const T *>(buffers[1]);

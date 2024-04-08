@@ -20,6 +20,6 @@ pybind11::dict Registrations() {
 PYBIND11_MODULE(gpu_ops, m) {
   m.def("registrations", &Registrations);
   m.def("build_glcm_descriptor",
-        [](std::int64_t size) { return PackDescriptor(GLCMDescriptor{size}); });
+        [](std::int32_t size) { return PackDescriptor(GLCMDescriptor{size}); });
 }
 }  // namespace
